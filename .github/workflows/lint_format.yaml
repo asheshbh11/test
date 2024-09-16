@@ -24,7 +24,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run PHP CodeSniffer (Lint)
-        run: ./vendor/bin/phpcs --standard=PSR12
+        run: ./vendor/bin/phpcs --standard=PSR12 src/ tests/ config/ public/
 
       - name: Run PHP-CS-Fixer (Format)
         run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --rules=@PSR12
