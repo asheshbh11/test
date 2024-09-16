@@ -24,7 +24,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run PHP CodeSniffer (Lint)
-        run: ./vendor/bin/phpcs --standard=PSR12 src/ tests/ config/ public/
+        run: ./vendor/bin/phpcs --standard=PSR12 src/ config/ public/ migrations/
 
       - name: Run PHP-CS-Fixer (Format)
         run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --rules=@PSR12
@@ -39,7 +39,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
 
       - name: Install dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
