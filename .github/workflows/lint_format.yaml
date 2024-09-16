@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  lint:
+  lint_and_format:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,25 +24,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run PHP CodeSniffer (Lint)
-        run: ./vendor/bin/phpcs --standard=PSR12 src/ config/ public/ migrations/
+        run: ./vendor/bin/phpcs --standard=PSR12 src/
 
       - name: Run PHP-CS-Fixer (Format)
-        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --rules=@PSR12
-
-  format:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-
-      - name: Install dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
-
-      - name: Run PHP-CS-Fixer (Auto-format)
-        run: ./vendor/bin/php-cs-fixer fix --rules=@PSR12
+        run: ./vendor/bin/php-cs-fixer fix --rules=@PSR12 src/
